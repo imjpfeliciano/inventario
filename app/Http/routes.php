@@ -21,6 +21,8 @@ Route::post('nuevo', 'ProductosController@store');
 
 Route::get('usuario', 'UsuariosController@create');
 
+Route::get('productos/get/{id}', ['as' => 'getentry', 'uses' => 'ProductosController@show']);
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

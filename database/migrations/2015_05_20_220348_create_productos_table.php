@@ -19,6 +19,9 @@ class CreateProductosTable extends Migration {
 			$table->integer('min_stock');
 			$table->integer('max_stock');
 			$table->integer('act_stock');
+			$table->string('filename');
+			$table->string('mime');
+			$table->string('original_filename');
 			$table->float('precio');
 			$table->timestamps();
 		});

@@ -3,9 +3,14 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
 use App\Producto;
+use Input;
+use Request;
+use Storage;
+use File;
+use Illuminate\Http\Response;
 
 class ProductosController extends Controller {
 
@@ -38,7 +43,25 @@ class ProductosController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$producto = new Producto;
+		$producto->nombre = Input::get('nombre_producto');
+		$producto->descripcion = Input::get('descripcion');
+		
+		$archivo = Request::file('imagen');
+		$extension = $archivo->getClientOriginalExtension();
+		Storage::disk('local')->put($archivo->getFilename().'.'.$extension, File::get($archivo));
+
+		$producto->mime = $archivo->getClientMimeType();
+		$producto->original_filename = $archivo->getClientOriginalName();
+		$producto->filename = $archivo->getFilename().'.'.$extension;
+
+		$producto->min_stock = Input::get('min_stock');
+		$producto->max_stock = Input::get('max_stock');
+		$producto->act_stock = Input::get('in_stock');
+		$producto->precio = Input::get('precio');
+		$producto->save();
+
+		//dd($producto);
 	}
 
 	/**
@@ -49,7 +72,15 @@ class ProductosController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$entry = Producto::where('filename', '=', $id)->firstOrFail();
+
+		//dd($entry);
+
+		$file = Storage::disk('local')->get($entry->filename);
+ 
+
+		return (new Response($file, 200))
+              ->header('Content-Type', $entry->mime);
 	}
 
 	/**

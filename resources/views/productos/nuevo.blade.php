@@ -6,6 +6,7 @@
 		<div class="card-panel">
 			<center><h4>Registro de Productos</h4></center>
 			<form id='formulario' method='post' enctype='multipart/form-data' action=''>
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="row">
 					<div class="input-field col s12">
 						<input id="id_nombre_producto" name="nombre_producto" type="text" class="validate"/>
