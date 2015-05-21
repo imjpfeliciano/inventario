@@ -11,7 +11,7 @@
 							<div class="col s12">
 								<hr>
 								<div class="col s4">
-									<img src="{{route('getentry',$producto->filename)}}" width="300">
+									<img src="{{route('getentry',$producto->filename)}}" class="responsive-img" >
 								</div>
 
 								<div class="col s8">
@@ -34,13 +34,6 @@
 				</div>
 			</div>
 		</div>
-
-
-		<!--
-		@foreach ($productos as $producto)
-			<li>{{$producto->nombre}}</li>
-			<img src="">
-		@endforeach-->
 	@else
 		No hay productos registrados
 	@endif
