@@ -13,7 +13,8 @@
 	@if (Auth::guest())
 		<div class="navbar-fixed">
 			<nav>
-		    	<div class="nav-wrapper deep-purple lighten-3">
+		    	<!--<div class="nav-wrapper deep-purple lighten-3">-->
+		    	<div class="nav-wrapper indigo darken-3">
 		      		<a href="/" class="brand-logo"><i class="mdi-action-shopping-cart">Inventario</i></a>
 
 		      		<ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -49,6 +50,10 @@
 		    	</div>
 		  	</nav>
 	  	</div>		
+	@endif
+
+	@if (Session::has('message'))
+    	<p class="flow-text">{{ Session::get('message') }}</p>
 	@endif
 
 	@yield('content')

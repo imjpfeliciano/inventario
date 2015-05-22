@@ -11,6 +11,7 @@ use Request;
 use Storage;
 use File;
 use Illuminate\Http\Response;
+use Session;
 
 class ProductosController extends Controller {
 
@@ -61,7 +62,9 @@ class ProductosController extends Controller {
 		$producto->precio = Input::get('precio');
 		$producto->save();
 
-		//dd($producto);
+		Session::flash('message', 'Producto agregado correctamente!'); 
+		return redirect()->back();
+
 	}
 
 	/**
@@ -72,7 +75,7 @@ class ProductosController extends Controller {
 	 */
 	public function show($id)
 	{
-		$entry = Producto::where('filename', '=', $id)->firstOrFail();
+		$entry = Producto::where('id', '=', $id)->firstOrFail();
 
 		//dd($entry);
 
@@ -91,7 +94,9 @@ class ProductosController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$producto = Producto::find($id);
+
+		return view('productos/editar', ['producto' => $producto]);
 	}
 
 	/**
@@ -102,7 +107,31 @@ class ProductosController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		$producto = Producto::find($id);
+
+		$producto->nombre = Input::get('nombre_producto');
+		$producto->descripcion = Input::get('descripcion');
+		
+
+		if(Input::hasFile('imagen')){
+			$archivo = Request::file('imagen');
+			$extension = $archivo->getClientOriginalExtension();
+			Storage::disk('local')->put($archivo->getFilename().'.'.$extension, File::get($archivo));
+
+			$producto->mime = $archivo->getClientMimeType();
+			$producto->original_filename = $archivo->getClientOriginalName();
+			$producto->filename = $archivo->getFilename().'.'.$extension;
+		}
+
+		$producto->min_stock = Input::get('min_stock');
+		$producto->max_stock = Input::get('max_stock');
+		$producto->act_stock = Input::get('in_stock');
+		$producto->precio = Input::get('precio');
+
+		$producto->save();
+
+		Session::flash('message','Se ha editado correctamente!');
+		return redirect()->back();
 	}
 
 	/**
@@ -113,7 +142,11 @@ class ProductosController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$producto = Producto::find($id);
+		$producto->delete();
+
+		Session::flash('message', 'Eliminado correctamente!');
+		return redirect()->back();
 	}
 
 }

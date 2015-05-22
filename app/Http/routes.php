@@ -15,14 +15,21 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::get('productos', 'ProductosController@index');
-Route::get('nuevo', 'ProductosController@create');
-Route::post('nuevo', 'ProductosController@store');
 
-Route::get('usuario', 'UsuariosController@create');
 
+
+
+//Route::get('usuario', 'UsuariosController@create');
+
+Route::get('productos/', 'ProductosController@index');
+Route::get('productos/nuevo', 'ProductosController@create');
+Route::post('productos/nuevo', 'ProductosController@store');
+Route::get('productos/{id}/editar', 'ProductosController@edit');
+Route::post('productos/{id}/editar','ProductosController@update');
+Route::get('productos/{id}/eliminar', 'ProductosController@destroy');
+
+//Route::resource('productos', 'ProductosController');
 Route::get('productos/get/{id}', ['as' => 'getentry', 'uses' => 'ProductosController@show']);
-
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

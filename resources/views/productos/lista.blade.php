@@ -11,7 +11,7 @@
 							<div class="col s12">
 								<hr>
 								<div class="col s4">
-									<img src="{{route('getentry',$producto->filename)}}" class="responsive-img" >
+									<img src="{{route('getentry',$producto->id)}}" class="responsive-img" >
 								</div>
 
 								<div class="col s8">
@@ -27,6 +27,12 @@
 											<span>{{$producto->act_stock}} EN STOCK</span>
 										</div>
 									</div>
+									@if(Auth::check())
+										@if(Auth::user()->type == 1)
+		      								<a class="waves-effect waves-light btn" href="{{$producto->id}}/editar">Editar</a>
+		      								<a class="waves-effect waves-light btn" href="{{$producto->id}}/eliminar">Eliminar</a>
+	      								@endif
+	      							@endif
 								</div>
 							</div>
 						@endforeach
