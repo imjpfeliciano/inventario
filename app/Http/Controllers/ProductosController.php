@@ -143,6 +143,10 @@ class ProductosController extends Controller {
 	public function destroy($id)
 	{
 		$producto = Producto::find($id);
+		if(Storage::disk('local')->exists($producto->filename)){
+			Storage::disk('local')->delete($producto->filename);
+		}
+
 		$producto->delete();
 
 		Session::flash('message', 'Eliminado correctamente!');

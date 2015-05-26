@@ -1,11 +1,20 @@
+ <!DOCTYPE html>
+  <html>
+    <head>
+     
+    </head>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>Laravel</title>
-  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
-  	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
-  	
+
+	 <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   	@yield('encabezado')
 </head>
 
@@ -32,16 +41,17 @@
 				</ul>
 
 				<nav>
-		    	<div class="nav-wrapper deep-purple lighten-3">
+		    	<div class="nav-wrapper indigo darken-3">
 		    		@if (Auth::user()->type)
-		      			<a href="#" class="brand-logo">Inventario</a>
+		      			<a href="#" class="brand-logo center">Admin</a>
 		      		@else
-		      			<a href="#" class="brand-logo">Inventario</a>
+		      			<a href="#" class="brand-logo center">User</a>
 	      			@endif
 
 	      			<ul id="nav-mobile" class="left hide-on-med-and-down">
-		      			<li><a href="">Productos</a></li>
-		      		</ul>
+        				<li><a href="/productos">inventario</a></li>
+      				</ul>
+
 		      		<ul id="nav-mobile" class="right hide-on-med-and-down">
 		      			<li><a href="">carrito</a></li>
 		      			<li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{Auth::user()->name}}<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
@@ -53,9 +63,15 @@
 	@endif
 
 	@if (Session::has('message'))
-    	<p class="flow-text">{{ Session::get('message') }}</p>
+    	<a class="btn"  onclick="style.display = 'none'" ><i class="mdi-content-clear right"></i>{{ Session::get('message')}}</a>
 	@endif
 
 	@yield('content')
+
+	<!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
 </body>
 </html>
+
+
