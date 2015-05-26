@@ -29,8 +29,8 @@
 									</div>
 									@if(Auth::check())
 										@if(Auth::user()->type == 1)
-		      								<a class="waves-effect waves-light btn" href="{{$producto->id}}/editar">Editar</a>
-		      								<a class="waves-effect waves-light btn" href="{{$producto->id}}/eliminar">Eliminar</a>
+		      								<a class="waves-effect waves-light btn" href="/productos/{{$producto->id}}/editar">Editar</a>
+		      								<a class="waves-effect waves-light btn" href="/productos/{{$producto->id}}/eliminar">Eliminar</a>
 	      								@endif
 	      							@endif
 								</div>

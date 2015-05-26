@@ -5,6 +5,10 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use Input;
+use Session;
+use App\Categoria;
+
 class CategoriaController extends Controller {
 
 	/**
@@ -34,7 +38,13 @@ class CategoriaController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$categoria = new Categoria;
+		$categoria->nombre = Input::get('nombre_categoria');
+		$categoria->descripcion = Input::get('descripcion');
+		$categoria->save();
+
+		Session::flash('message', 'Categoria agregada correctamente!');
+		return redirect()->back();
 	}
 
 	/**

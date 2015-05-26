@@ -66,7 +66,9 @@
     	<a class="btn"  onclick="style.display = 'none'" ><i class="mdi-content-clear right"></i>{{ Session::get('message')}}</a>
 	@endif
 
-	@yield('content')
+	<div class="container">
+		@yield('content')
+	</div>
 
 	<!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
