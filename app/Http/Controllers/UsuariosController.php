@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UsuariosController extends Controller {
 
@@ -14,7 +15,9 @@ class UsuariosController extends Controller {
 	 */
 	public function index()
 	{
-		return view('usuarios/nuevo');
+		//$usuarios = User::where('type', '=', 0)->get();
+		$usuarios = User::all();
+		return view('usuarios/lista', ['usuarios' => $usuarios]);
 	}
 
 	/**
@@ -34,7 +37,7 @@ class UsuariosController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		
 	}
 
 	/**

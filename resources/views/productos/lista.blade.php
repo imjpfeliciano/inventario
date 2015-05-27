@@ -43,4 +43,8 @@
 	@else
 		No hay productos registrados
 	@endif
+
+	@if(Auth::user()->type)
+		<a href="productos/nuevo" class="waves-effect waves-light btn"><i class="mdi-content-add left"></i>Agregar Producto</a>
+	@endif
 @endsection

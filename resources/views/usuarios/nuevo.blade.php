@@ -5,7 +5,8 @@
 		<div class="col s8 offset-s2">
 		<div class="card-panel">
 			<center><h4>Registro de Usuarios</h4></center>
-			<form id='formulario' method='post' enctype='multipart/form-data' action=''>
+			<form id='formulario' method='post' enctype='multipart/form-data' action='/auth/register'>
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="row">
 					<div class="input-field col s12">
 						<input id="id_username" name="username" type="text" class="validate"/>

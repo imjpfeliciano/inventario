@@ -18,7 +18,8 @@ class CategoriaController extends Controller {
 	 */
 	public function index()
 	{
-		return view('categorias/lista');
+		$categorias = Categoria::all();
+		return view('categorias/lista', ['categorias' => $categorias]);
 	}
 
 	/**
@@ -55,7 +56,8 @@ class CategoriaController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$categoria = Categoria::find($id);
+		return view('categorias/categoria', ['categoria' => $categoria]);
 	}
 
 	/**

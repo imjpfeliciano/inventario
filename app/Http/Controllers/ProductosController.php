@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 //use Illuminate\Http\Request;
 
 use App\Producto;
+use App\Categoria;
 use Input;
 use Request;
 use Storage;
@@ -23,8 +24,8 @@ class ProductosController extends Controller {
 	public function index()
 	{
 		$productos = Producto::all();
-		//dd($productos);
-		return view('productos/lista', ['productos' => $productos]);
+		$categorias = Categoria::all();
+		return view('productos/lista', ['productos' => $productos, 'categorias' => $categorias]);
 	}
 
 	/**

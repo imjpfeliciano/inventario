@@ -15,6 +15,8 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 
 Route::get('usuarios/', 'UsuariosController@index');
+Route::get('usuarios/nuevo', 'UsuariosController@create');
+Route::post('usuarios/nuevo', 'UsuariosController@store');
 
 Route::get('productos/', 'ProductosController@index');
 Route::get('productos/nuevo', 'ProductosController@create');
@@ -27,6 +29,7 @@ Route::get('productos/get/{id}', ['as' => 'getentry', 'uses' => 'ProductosContro
 Route::get('categorias/', 'CategoriaController@index');
 Route::get('categorias/nuevo', 'CategoriaController@create');
 Route::post('categorias/nuevo', 'CategoriaController@store');
+Route::get('categorias/{id}', ['as' => 'getcategoria', 'uses' => 'CategoriaController@show']);
 //Route::resource('categorias', 'CategoriaController');
 //Route::resource('productos', 'ProductosController');
 
