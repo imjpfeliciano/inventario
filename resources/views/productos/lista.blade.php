@@ -29,8 +29,8 @@
 									</div>
 									@if(Auth::check())
 										@if(Auth::user()->type == 1)
-		      								<a class="waves-effect waves-light btn" href="/productos/{{$producto->id}}/editar">Editar</a>
-		      								<a class="waves-effect waves-light btn" href="/productos/{{$producto->id}}/eliminar">Eliminar</a>
+		      								<a class="waves-effect waves-light btn" href="{{$producto->id}}/editar">Editar</a>
+		      								<a class="waves-effect waves-light btn" href="{{$producto->id}}/eliminar">Eliminar</a>
 	      								@endif
 	      							@endif
 								</div>
@@ -43,8 +43,9 @@
 	@else
 		No hay productos registrados
 	@endif
-
-	@if(Auth::user()->type)
-		<a href="productos/nuevo" class="waves-effect waves-light btn"><i class="mdi-content-add left"></i>Agregar Producto</a>
+	@if(Auth::check())
+		@if(Auth::user()->type)
+			<a href="productos/nuevo" class="waves-effect waves-light btn"><i class="mdi-content-add left"></i>Agregar Producto</a>
+		@endif
 	@endif
 @endsection
