@@ -12,7 +12,7 @@
 								<div class="col s12">
 									<hr>
 									<div class="col s4">
-										<img src="{{route('getentry',$producto->id)}}" class="responsive-img" >
+										<img src="{{route('getentry',$producto->id)}}" class="circle responsive-img" >
 									</div>
 
 									<div class="col s8">

@@ -35,9 +35,6 @@ Route::get('home/categorias/{id}', ['as' => 'getcategoria', 'uses' => 'Categoria
 //Route::resource('categorias', 'CategoriaController');
 //Route::resource('productos', 'ProductosController');
 
-Route::get('current', function(){
-	return URL::current();
-});
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

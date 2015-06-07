@@ -26,9 +26,6 @@ class ProductosController extends Controller {
 	public function index()
 	{
 		$productos = Producto::all();
-		//$categorias = Categoria::all();
-		//return view('productos/lista', ['productos' => $productos, 'categorias' => $categorias]);
-
 		return view('productos/lista', ['productos' => $productos]);
 	}
 
@@ -39,6 +36,7 @@ class ProductosController extends Controller {
 	 */
 	public function create()
 	{
+		//dd(gd_info());
 		return view('productos/nuevo');
 	}
 
@@ -53,22 +51,13 @@ class ProductosController extends Controller {
 		$producto->nombre = Input::get('nombre_producto');
 		$producto->descripcion = Input::get('descripcion');
 		
-		//Image::configure(array('driver' => 'imagick'));
-		//Image::make(Input::file('imagen'))->resize(200,200)->save('foo.jpg');
-
+		
 		$archivo = Input::file('imagen');
 		$extension = $archivo->getClientOriginalExtension();
 
-		//$path = storage_path('imagenes_redimensionadas/'.$archivo->getClientOriginalName().$extension);
-
-		
-		
-		//dd($archivo->getRealPath());
+		Image::make($archivo->getRealPath())->resize(250,250)->save();
 
 		Storage::disk('local')->put($archivo->getFilename().'.'.$extension, File::get($archivo));
-
-		
-		//Image::make(storage_path().'\app\\'.$archivo->getFilename().'.'.$extension)->resize(200,200)->save($path);
 		
 		$producto->mime = $archivo->getClientMimeType();
 		$producto->original_filename = $archivo->getClientOriginalName();
